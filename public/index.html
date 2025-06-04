@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AllxdDev Email Sender adalah aplikasi web yang memungkinkan Anda mengirim email dengan cepat dan mudah melalui antarmuka pengguna yang sederhana, tanpa konfigurasi rumit.">
+    <meta name="keywords" content="email sender, kirim email, aplikasi email web, Node.js email sender, kirim email online, email API, email gratis, email client web, HTML email sender, SMTP web app, aplikasi pengirim email, email sender web app, JavaScript email tool, allxddev email, email form sender, kirim email otomatis, send email from website, email tool open source, aplikasi pengirim email gratis, frontend email sender, email gateway, mass email sender, bulk email tool, simple email sender, personal email app, send email online, web email application, Node.js email app, free email tool, open-source email sender, SMTP client, HTML email form, email API integration, simple email sender, bulk email sender, mass mailing tool, email delivery app, email automation, JavaScript email tool, frontend email sender, web-based email service, email gateway, email contact form, email dispatch app, personalized email sender, transactional email app, responsive email sender, email platform, email utility, email management tool, email notification system, real-time email sender, email campaign sender, custom email sender, website email integration">
+    <meta name="author" content="AllxdDev">
+    <meta name="title" content="AllxdDev Email Sender">
+    <meta property="og:image" content="https://raw.githubusercontent.com/AllxdDev-Hosting/Email_Sender/b36f52f810d6b750384841fadbf4e999cd9f50b9/public/icon.png">
+    <meta property="og:url" content="https://allxddev-email.vercel.app">
+    <title>Kirim Email</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/AllxdDev-Hosting/Email_Sender/b36f52f810d6b750384841fadbf4e999cd9f50b9/public/icon.png" type="image/png">
+</head>
+<body>
+    <div class="card">
+        <h2>📩 Kirim Email</h2>
+        <form id="emailForm">
+            <div class="form-group">
+                <label for="to">Kepada</label>
+                <input type="email" id="to" name="to" placeholder="Masukkan email penerima" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subjek</label>
+                <input type="text" id="subject" name="subject" placeholder="Masukkan subjek email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Pesan</label>
+                <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="template">Template</label>
+                <select name="template" id="template">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark</option>
+                    <option value="struck">Struk</option>
+                </select>
+            </div>
+            <button type="submit">Kirim Email</button>
+        </form>
+        <p id="statusMessage"></p>
+
+        <p style="text-align: center; margin-top: 20px;">Note:</p>
+        <p style="text-align: center;">Jika pesan tidak ada di bagian utama gmail kamu, maka mungkin pesan tersebut terkirim ke spam</p>
+        <img class="spam-img" src="https://files.catbox.moe/9py14p.jpg" alt="Spam_Email" style="display: block; margin: 10px auto; max-width: 100%; height: auto;">
+        
+        <div class="footer" style="text-align: center; margin-top: 30px;">
+            <p>Dibuat dengan ♥️ oleh <a href="https://github.com/AllxdDev-Hosting" target="_blank" rel="noopener noreferrer">AllxdDev</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const to = document.getElementById('to').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const template = document.getElementById('template').value;
+
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = "Mengirim...";
+            statusMessage.style.color = "#FFD700";
+
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ to, subject, message, template })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    statusMessage.textContent = "✅ Email berhasil dikirim!";
+                    statusMessage.style.color = "#00FF7F";
+                    document.getElementById('emailForm').reset();
+                } else {
+                    statusMessage.textContent = "❌ " + result.message;
+                    statusMessage.style.color = "#FF4500";
+                }
+            } catch (error) {
+                statusMessage.textContent = "⚠️ Terjadi kesalahan!";
+                statusMessage.style.color = "#FF4500";
+            }
+        });
+    </script>
+</body>
+</html>
