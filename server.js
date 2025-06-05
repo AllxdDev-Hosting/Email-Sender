@@ -63,13 +63,13 @@ app.post('/send-email', speedLimiter, validateEmail, async (req, res) => {
         ${message}
       </p>
       <hr style="margin: 20px 0;">
-      <p style="font-size: 14px; color: #999;">This message was sent via <b><a href="https://allxddev-email.vercel.app" style="text-decoration: none; color: green;">AllxdDev Email Sender</a></b></p>
+      <p style="font-size: 14px; color: #999;">This message was sent via <b><a href="https://email-senderallxddev.vercel.app" style="text-decoration: none; color: green;">AllxdDev Email Sender</a></b></p>
     </div>`,
       dark: `<div style="background: #1e1e1e; color: #f0f0f0; padding: 20px; border-radius: 8px; font-family: monospace;">
             <h2 style="color: #4caf50;">${subject}</h2>
             <pre style="white-space: pre-wrap; line-height: 1.5; color: #ccc;">${message}</pre>
             <hr style="border-color: #333;">
-            <p style="font-size: 12px; color: #666;">Powered by <b><a href="https://allxddev-email.vercel.app" style="text-decoration: none; color: #666;">AllxdDev Email Sender</a></b></p>
+            <p style="font-size: 12px; color: #666;">Powered by <b><a href="https://email-senderallxddev.vercel.app" style="text-decoration: none; color: #666;">AllxdDev Email Sender</a></b></p>
     </div>`,
       struck: `<div style="padding:20px;border:1px dashed #222;font-size:15px">
               <tt>Hi <b>${to}</b>
@@ -77,7 +77,7 @@ app.post('/send-email', speedLimiter, validateEmail, async (req, res) => {
               <p>${message}</p>
               <br>
                 <hr style="border:0px; border-top:1px dashed #222">
-                 <p>Send with <b><a href="https://allxddev-email.vercel.app" style="text-decoration: none;">AllxdDev Email Sender</a></b></p>
+                 <p>Send with <b><a href="https://email-senderallxddev.vercel.app" style="text-decoration: none;">AllxdDev Email Sender</a></b></p>
               </tt>
       </div>`
     };
