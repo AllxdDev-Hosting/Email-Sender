@@ -18,7 +18,7 @@
 </h3>
 
 <p align="center">
-  <a href="https://allxddev-email.vercel.app/">Coba Sekarang</a>
+  <a href="https://email-senderallxddev.vercel.app/">Coba Sekarang</a>
 </p>
 
 <p align="center">
